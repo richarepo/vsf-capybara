@@ -15,3 +15,4 @@ Closes #
 <!-- Please get familiar with following info -->
 
 - [ ] I read and followed [contribution rules](https://github.com/DivanteLtd/vsf-capybara/blob/master/CONTRIBUTING.md)
+- [ ] I accept [Individual Contributor License Agreement](https://github.com/DivanteLtd/next/blob/master/CLA.md)
