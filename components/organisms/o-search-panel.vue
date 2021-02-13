@@ -14,40 +14,40 @@
             v-for="category in categories"
             :key="category.category_id"
           >
-          <div class="filter_parent">
-            <SfFilter
-              :key="category.category_id"
-              :selected="isCategorySelected(category)"
-              @change="toggleCategory(category)"
-            />
-            <div>
-              <SfMenuItem :label="category.name" />
-              <div v-for="(item, index) in category.items" :key="index">
-                <div class="child_container">
+            <div class="filter_parent">
+              <SfFilter
+                :key="category.category_id"
+                :selected="isCategorySelected(category)"
+                @change="toggleCategory(category)"
+              />
+              <div>
+                <SfMenuItem :label="category.name" />
+                <div v-for="(item, index) in category.items" :key="index">
+                  <div class="child_container">
                     <SfFilter
                       :key="index"
                       :selected="isCategorySelected(item)"
                       @change="toggleCategory(item)"
                     />
-                  <router-link :to="item.link">
-                  <SfMenuItem :label="item.name" />
-                  </router-link>
-                </div>
-                <div v-for="(subitem, i) in item.items" :key="i" >
+                    <router-link :to="item.link">
+                      <SfMenuItem :label="item.name" />
+                    </router-link>
+                  </div>
+                  <div v-for="(subitem, i) in item.items" :key="i">
                     <div class="sub_child_container">
-                    <SfFilter
-                      :key="i"
-                      :selected="isCategorySelected(subitem)"
-                      @change="toggleCategory(subitem)"
-                    />
-                  <router-link :to="subitem.link">
-                    <SfMenuItem :label="subitem.name" />
-                  </router-link>
-                </div>
+                      <SfFilter
+                        :key="i"
+                        :selected="isCategorySelected(subitem)"
+                        @change="toggleCategory(subitem)"
+                      />
+                      <router-link :to="subitem.link">
+                        <SfMenuItem :label="subitem.name" />
+                      </router-link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </SfListItem>
         </SfList>
       </div>
@@ -89,7 +89,7 @@ import { currentStoreView } from '@vue-storefront/core/lib/multistore';
 import { productThumbnailPath } from '@vue-storefront/core/helpers';
 import { htmlDecode } from '@vue-storefront/core/filters';
 import { formatProductLink } from '@vue-storefront/core/modules/url/helpers';
-import { prepareCategoryProduct,formatFiltersOptions } from 'theme/helpers';
+import { prepareCategoryProduct, formatFiltersOptions } from 'theme/helpers';
 import VueOfflineMixin from 'vue-offline/mixin';
 import { mapGetters } from 'vuex';
 import i18n from '@vue-storefront/i18n';
@@ -136,7 +136,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getCategories: 'category/getCategories',
+      getCategories: 'category/getCategories'
     }),
     visibleProducts () {
       const productList = this.selectedCategoryIds.length
@@ -145,9 +145,9 @@ export default {
 
       return productList.map(product => prepareCategoryProduct(product));
     },
-  categories () {
-    console.log("Your getCategories user are here =+++++++++>",this.getCategories);
-      return formatFiltersOptions(this.getCategories, this.products );
+    categories () {
+      console.log('Your getCategories user are here =+++++++++>', this.getCategories);
+      return formatFiltersOptions(this.getCategories, this.products);
     },
     noResultsMessage () {
       return this.search.length < 3
@@ -162,18 +162,17 @@ export default {
       return this.selectedCategoryIds.includes(category.id);
     },
     toggleCategory (category) {
-      console.log("your category ========++>",category);
+      console.log('your category ========++>', category);
       if (this.isCategorySelected(category)) {
-        if(category.children_data){
-         category.children_data.map(value=>{
+        if (category.children_data) {
+          category.children_data.map(value => {
             this.selectedCategoryIds = this.selectedCategoryIds.filter(categoryId => categoryId !== value.id);
           })
         }
         this.selectedCategoryIds = this.selectedCategoryIds.filter(categoryId => categoryId !== category.id);
-
       } else {
-        if(category.children_data){
-          category.children_data.map(value=>{
+        if (category.children_data) {
+          category.children_data.map(value => {
             this.selectedCategoryIds.push(value.id);
           })
         }
