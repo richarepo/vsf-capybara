@@ -147,7 +147,7 @@ export default {
       return productList.map(product => prepareCategoryProduct(product));
     },
     categories () {
-      console.log('Your getCategories user are here =+++++++++>', this.getCategories);
+      // comment added
       return formatFiltersOptions(this.getCategories, this.products);
     },
     noResultsMessage () {
