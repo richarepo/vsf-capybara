@@ -85,7 +85,7 @@
 
 <script>
 import config from 'config';
-// comment added
+// comment added1
 import { currentStoreView } from '@vue-storefront/core/lib/multistore';
 import { productThumbnailPath } from '@vue-storefront/core/helpers';
 import { htmlDecode } from '@vue-storefront/core/filters';
